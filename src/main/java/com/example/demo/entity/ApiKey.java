@@ -62,5 +62,8 @@ public class ApiKey{
     public Timestamp getUpdatedAt(){
         return updatedAt;
     }
+    public ApiKey(Long id, String keyValue, Long ownerld, QuotaPlan plan, Boolean active, Timestamp createdAt, Timestamp updatedAt){
+        this.
+    }
 
 }
