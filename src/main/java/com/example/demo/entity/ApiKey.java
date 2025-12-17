@@ -6,7 +6,6 @@ import jakarta.presistence.GeneratedValue;
 import jakarta.presistence.GenerationType;
 import jakarta.presistence.Column;
 import jakarta.presistence.ManyToOne;
-import jakarta.presistence.ManyToMany;
 
 
 @Entity
@@ -62,5 +61,6 @@ public class ApiKey{
     }
     public Timestamp getUpdatedAt(){
         return updatedAt;
+    }
 
 }
