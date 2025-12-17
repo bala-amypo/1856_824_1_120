@@ -71,6 +71,8 @@ public class ApiKey{
         this.createdAt=createdAt;
         this.updatedAt=updatedAt;
     }
-    
+    public ApiKey(){
+        
+    }
 
 }
