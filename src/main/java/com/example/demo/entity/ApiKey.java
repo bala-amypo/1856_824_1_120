@@ -47,6 +47,15 @@ public class ApiKey{
     public void setPlan(String plan){
         this.plan=plan;
     }
-    public Boolean 
+    public Boolean getActive(){
+        return active;
+    }
+    public void setActive(Boolean active){
+        this.active=active;
+    }
+    public Timestamp getCreatedAt(){
+        return createdAt;
+    }
+    public void setCreatedAt()
 
 }
