@@ -62,6 +62,9 @@ public class ApiKey{
     public Timestamp getUpdatedAt(){
         return updatedAt;
     }
+    public void setUpdatedAt(Timestamp updatedAt){
+        this.updatedAt=updatedAt;
+    }
     public ApiKey(Long id, String keyValue, Long ownerld, QuotaPlan plan, Boolean active, Timestamp createdAt, Timestamp updatedAt){
         this.id=id;
         this.keyValue=keyValue;
