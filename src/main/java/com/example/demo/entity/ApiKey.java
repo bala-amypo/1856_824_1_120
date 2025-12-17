@@ -41,10 +41,10 @@ public class ApiKey{
     public void setOwnerld(Long ownerld){
         this.ownerld=ownerld;
     }
-    public String getPlan(){
+    public QuotaPlan getPlan(){
         return plan;
     }
-    public void setPlan(String plan){
+    public void setPlan(QuotaPlan plan){
         this.plan=plan;
     }
     public Boolean getActive(){
