@@ -16,7 +16,7 @@ public class ApiKey{
 
     @Id
     @GeneratedValue(strategy=GenerationType.INDENTITY)
-    private Long Id;
+    private Long id;
     @Column(unique=true)
     private String keyValue;
     private Long ownerld;
@@ -25,6 +25,12 @@ public class ApiKey{
     private =new createdAt;
     private =new updatedAt;
 
-    public 
+    public Long getId(){
+        return id;
+    }
+    public void setId(Long id){
+        this.id=id;
+    }
+    public String 
 
 }
