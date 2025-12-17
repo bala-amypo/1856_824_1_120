@@ -44,6 +44,9 @@ public class ApiKey{
     public String getPlan(){
         return plan;
     }
-    public void 
+    public void setPlan(String plan){
+        this.plan=plan;
+    }
+    public 
 
 }
