@@ -56,6 +56,10 @@ public class ApiKey{
     public Timestamp getCreatedAt(){
         return createdAt;
     }
-    public void setCreatedAt()
+    public void setCreatedAt(Timestamp createdAt){
+        this.createdAt=createdAt;
+    }
+    public Timestamp getUpdatedAt(){
+        return updatedAt;
 
 }
