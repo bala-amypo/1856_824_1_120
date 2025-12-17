@@ -1,6 +1,11 @@
 package com.example.demo.entity;
 
 public class ApiKey{
-    private long id;
-    private string 
+    private Long id;
+    private String keyValue;
+    private Long ownerld;
+    private String plan;
+    private Boolean active;
+    private =new createdAt;
+    private =new 
 }
