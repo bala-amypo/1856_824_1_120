@@ -1,11 +1,11 @@
 package com.example.demo.entity;
 
-import jakarta.presistence.Entity;
-import jakarta.presistence.Id;
-import jakarta.presistence.GeneratedValue;
-import jakarta.presistence.GenerationType;
-import jakarta.presistence.Column;
-import jakarta.presistence.ManyToOne;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Column;
+import jakarta.persistence.ManyToOne;
 
 
 @Entity
