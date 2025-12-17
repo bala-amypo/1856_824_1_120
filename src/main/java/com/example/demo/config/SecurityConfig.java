@@ -1,6 +1,6 @@
 package com.example.demo.config;
 
 
-public class securityConfig{
+public class SecurityConfig{
     
 }
