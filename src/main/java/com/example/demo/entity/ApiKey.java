@@ -35,7 +35,14 @@ public class ApiKey{
         return keyValue;
     }
     public void setKeyvalue(String keyValue){
-        
+        this.keyValue=keyValue;
     }
+    public Long getOwnerld(){
+        return ownerld;
+    }
+    public void setOwnerld(Long ownerld){
+        this.ownerld=ownerld;
+    }
+    publi
 
 }
