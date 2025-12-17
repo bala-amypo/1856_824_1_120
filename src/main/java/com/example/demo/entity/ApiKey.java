@@ -8,8 +8,6 @@ import jakarta.presistence.Column;
 import jakarta.presistence.ManyToOne;
 import jakarta.presistence.ManyToMany;
 
-import java.util.Set;
-import java.util.List;
 
 @Entity
 public class ApiKey{
@@ -22,8 +20,8 @@ public class ApiKey{
     private Long ownerld;
     private String plan;
     private Boolean active;
-    private =new createdAt;
-    private =new updatedAt;
+    private Timestamp createdAt;
+    private Timestamp updatedAt;
 
     public Long getId(){
         return id;
@@ -43,6 +41,9 @@ public class ApiKey{
     public void setOwnerld(Long ownerld){
         this.ownerld=ownerld;
     }
-    publi
+    public String getPlan(){
+        return plan;
+    }
+    public void 
 
 }
