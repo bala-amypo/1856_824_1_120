@@ -31,6 +31,11 @@ public class ApiKey{
     public void setId(Long id){
         this.id=id;
     }
-    public String 
+    public String getKeyValue(){
+        return keyValue;
+    }
+    public void setKeyvalue(String keyValue){
+        
+    }
 
 }
