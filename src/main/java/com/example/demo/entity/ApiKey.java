@@ -18,7 +18,8 @@ public class ApiKey{
     @Column(unique=true)
     private String keyValue;
     private Long ownerld;
-    private String plan;
+    @ManyToOne
+    private QuotaPlan plan;
     private Boolean active = true;
     private Timestamp createdAt;
     private Timestamp updatedAt;
