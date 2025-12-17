@@ -1,18 +1,20 @@
 package com.example.demo.entity;
 
 import jakarta.presistence.Entity;
-import jakarta.presistence.id;
+import jakarta.presistence.Id;
 import jakarta.presistence.GeneratedValue;
 import jakarta.presistence.GenerationType;
 import jakarta.presistence.Column;
-import jakarta.presistence.ManyTo
+import jakarta.presistence.ManyToOne;
+import jakarta.presistence.ManyToMany;
+
 
 @Entity
 public class ApiKey{
 
     @Id
     @GeneratedValue(strategy=GenerationType.INDENTITY)
-    private Long id;
+    private Long Id;
     @Column(unique=true)
     private String keyValue;
     private Long ownerld;
