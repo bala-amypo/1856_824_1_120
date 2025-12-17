@@ -63,7 +63,14 @@ public class ApiKey{
         return updatedAt;
     }
     public ApiKey(Long id, String keyValue, Long ownerld, QuotaPlan plan, Boolean active, Timestamp createdAt, Timestamp updatedAt){
-        this.
+        this.id=id;
+        this.keyValue=keyValue;
+        this.ownerld=ownerld;
+        this.plan=plan;
+        this.active=active;
+        this.createdAt=createdAt;
+        this.updatedAt=updatedAt;
     }
+    
 
 }
