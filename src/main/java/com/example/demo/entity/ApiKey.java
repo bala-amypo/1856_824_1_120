@@ -7,6 +7,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Column;
 import jakarta.persistence.ManyToOne;
 
+import java.sql.Timestamp;
+
 
 @Entity
 public class ApiKey{
@@ -22,6 +24,16 @@ public class ApiKey{
     private Boolean active = true;
     private Timestamp createdAt;
     private Timestamp updatedAt;
+
+    @PrePersist
+    public void onCreate(){
+        this.createdAt=new Timestamp(System.currentTimeMillis());
+    }
+
+    @PrePersist
+    public void onCreates(){
+        this.updatedAt=new Timestamp(System.currentTimeMillis());
+    }
 
    public Long getId() {
         return id;
@@ -67,17 +79,17 @@ public class ApiKey{
         return createdAt;
     }
 
-    public void setCreatedAt(Timestamp createdAt) {
-        this.createdAt = createdAt;
-    }
+    // public void setCreatedAt(Timestamp createdAt) {
+    //     this.createdAt = createdAt;
+    // }
 
     public Timestamp getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(Timestamp updatedAt) {
-        this.updatedAt = updatedAt;
-    }
+    // public void setUpdatedAt(Timestamp updatedAt) {
+    //     this.updatedAt = updatedAt;
+    // }
 
     public ApiKey(Long id, String keyValue, Long ownerld, QuotaPlan plan, Boolean active, Timestamp createdAt, Timestamp updatedAt){
         this.id=id;
