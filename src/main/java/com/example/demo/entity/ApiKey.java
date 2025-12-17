@@ -12,7 +12,7 @@ import jakarta.persistence.ManyToOne;
 public class ApiKey{
 
     @Id
-    @GeneratedValue(strategy=GenerationType.INDENTITY)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
     @Column(unique=true)
     private String keyValue;
