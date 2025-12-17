@@ -8,6 +8,8 @@ import jakarta.presistence.Column;
 import jakarta.presistence.ManyToOne;
 import jakarta.presistence.ManyToMany;
 
+import java.util.Set;
+import java.util.List;
 
 @Entity
 public class ApiKey{
@@ -22,4 +24,7 @@ public class ApiKey{
     private Boolean active;
     private =new createdAt;
     private =new updatedAt;
+
+    public 
+
 }
