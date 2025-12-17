@@ -23,48 +23,62 @@ public class ApiKey{
     private Timestamp createdAt;
     private Timestamp updatedAt;
 
-    public Long getId(){
+   public Long getId() {
         return id;
     }
-    public void setId(Long id){
-        this.id=id;
+
+    public void setId(Long id) {
+        this.id = id;
     }
-    public String getKeyValue(){
+
+    public String getKeyValue() {
         return keyValue;
     }
-    public void setKeyvalue(String keyValue){
-        this.keyValue=keyValue;
+
+    public void setKeyValue(String keyValue) {
+        this.keyValue = keyValue;
     }
-    public Long getOwnerld(){
-        return ownerld;
+
+    public Long getOwnerId() {
+        return ownerId;
     }
-    public void setOwnerld(Long ownerld){
-        this.ownerld=ownerld;
+
+    public void setOwnerId(Long ownerId) {
+        this.ownerId = ownerId;
     }
-    public QuotaPlan getPlan(){
+
+    public QuotaPlan getPlan() {
         return plan;
     }
-    public void setPlan(QuotaPlan plan){
-        this.plan=plan;
+
+    public void setPlan(QuotaPlan plan) {
+        this.plan = plan;
     }
-    public Boolean getActive(){
+
+    public Boolean getActive() {
         return active;
     }
-    public void setActive(Boolean active){
-        this.active=active;
+
+    public void setActive(Boolean active) {
+        this.active = active;
     }
-    public Timestamp getCreatedAt(){
+
+    public Timestamp getCreatedAt() {
         return createdAt;
     }
-    public void setCreatedAt(Timestamp createdAt){
-        this.createdAt=createdAt;
+
+    public void setCreatedAt(Timestamp createdAt) {
+        this.createdAt = createdAt;
     }
-    public Timestamp getUpdatedAt(){
+
+    public Timestamp getUpdatedAt() {
         return updatedAt;
     }
-    public void setUpdatedAt(Timestamp updatedAt){
-        this.updatedAt=updatedAt;
+
+    public void setUpdatedAt(Timestamp updatedAt) {
+        this.updatedAt = updatedAt;
     }
+
     public ApiKey(Long id, String keyValue, Long ownerld, QuotaPlan plan, Boolean active, Timestamp createdAt, Timestamp updatedAt){
         this.id=id;
         this.keyValue=keyValue;
