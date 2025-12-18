@@ -6,7 +6,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.PrePersist;
 
 @Entity
@@ -14,25 +13,24 @@ public class KeyExemption {
 
     @PrePersist
     public void onCreate() {
-        // you can initialize defaults here if needed
+    this. = new 
+    Timestamp(System.currentTimeMillis());
     }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    private ApiKey apiKey;
+    private String apiKey;
 
     private String notes;
 
     private Boolean unlimitedAccess;
 
-    private Integer temporaryExtensionLimit;
+    private Long temporaryExtensionLimit;
 
     private Timestamp validUntil;
 
-    // Getter and Setter for id
     public Long getId() {
         return id;
     }
@@ -41,16 +39,14 @@ public class KeyExemption {
         this.id = id;
     }
 
-    // Getter and Setter for apiKey
-    public ApiKey getApiKey() {
+    public String getApiKey() {
         return apiKey;
     }
 
-    public void setApiKey(ApiKey apiKey) {
+    public void setApiKey(String apiKey) {
         this.apiKey = apiKey;
     }
 
-    // Getter and Setter for notes
     public String getNotes() {
         return notes;
     }
@@ -59,7 +55,6 @@ public class KeyExemption {
         this.notes = notes;
     }
 
-    // Getter and Setter for unlimitedAccess
     public Boolean getUnlimitedAccess() {
         return unlimitedAccess;
     }
@@ -68,16 +63,14 @@ public class KeyExemption {
         this.unlimitedAccess = unlimitedAccess;
     }
 
-    // Getter and Setter for temporaryExtensionLimit
-    public Integer getTemporaryExtensionLimit() {
+    public Long getTemporaryExtensionLimit() {
         return temporaryExtensionLimit;
     }
 
-    public void setTemporaryExtensionLimit(Integer temporaryExtensionLimit) {
+    public void setTemporaryExtensionLimit(Long temporaryExtensionLimit) {
         this.temporaryExtensionLimit = temporaryExtensionLimit;
     }
 
-    // Getter and Setter for validUntil
     public Timestamp getValidUntil() {
         return validUntil;
     }
@@ -86,9 +79,8 @@ public class KeyExemption {
         this.validUntil = validUntil;
     }
 
-    // Parameterized Constructor
-    public KeyExemption(Long id, ApiKey apiKey, String notes,
-                        Boolean unlimitedAccess, Integer temporaryExtensionLimit,
+    public KeyExemption(Long id, String apiKey, String notes,
+                        Boolean unlimitedAccess, Long temporaryExtensionLimit,
                         Timestamp validUntil) {
         this.id = id;
         this.apiKey = apiKey;
@@ -98,7 +90,6 @@ public class KeyExemption {
         this.validUntil = validUntil;
     }
 
-    // Default Constructor
     public KeyExemption() {
 
     }
