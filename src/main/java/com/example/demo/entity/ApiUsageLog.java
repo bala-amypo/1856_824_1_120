@@ -5,7 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
-import jakarta.persistence.PerPersist;
+import jakarta.persistence.PrePersist;
 
 
 
@@ -13,7 +13,7 @@ import jakarta.persistence.PerPersist;
 @Entity
 public class ApiUsageLog {
 
-@PerPersist
+@PrePersist
 public void onCreate(){
 this.timestamp = new 
 Timestamp(System.currentTimeMillis());
@@ -63,7 +63,7 @@ Timestamp(System.currentTimeMillis());
     public void setTimestamp(Timestamp timestamp) {
         this.timestamp = timestamp;
     }
-    public ApiUsageLog(Long id, String apiKey, Timestamp endpoint, Timestamp timestamp ){
+    public ApiUsageLog(Long id, String apiKey, String endpoint, Timestamp timestamp ){
         this.id=id;
         this.apiKey=apiKey;
         this.endpoint=endpoint;
