@@ -3,7 +3,6 @@ package com.example.demo.entity;
 import java.sql.Timestamp;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
 
 
 
@@ -14,9 +13,8 @@ public class ApiUsageLog {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
     
-    private ApiKey apiKey;
+    private String apiKey;
     private String endpoint;
     private Timestamp timestamp;
 
@@ -30,11 +28,11 @@ public class ApiUsageLog {
     }
 
     
-    public ApiKey getApiKey() {
+    public String getApiKey() {
         return apiKey;
     }
 
-    public void setApiKey(ApiKey apiKey) {
+    public void setApiKey(String apiKey) {
         this.apiKey = apiKey;
     }
 
@@ -55,5 +53,5 @@ public class ApiUsageLog {
     public void setTimestamp(Timestamp timestamp) {
         this.timestamp = timestamp;
     }
-    public ApiUsageLog()
+    public ApiUsageLog(Long id, ApiKey api)
 }
