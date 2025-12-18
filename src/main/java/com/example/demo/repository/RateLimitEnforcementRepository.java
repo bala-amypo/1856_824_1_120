@@ -1,8 +1,8 @@
 package com.example.demo.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import com.example.demo.Entity.ApiKey;
+import com.example.demo.Entity.RateLimitEnforcement;
 
-public interface Rate extends JpaRepository<ApiKey, Long>{
+public interface RateLimitEnforcementRepository extends JpaRepository<RateLimitEnforcement, Long>{
 
 }
