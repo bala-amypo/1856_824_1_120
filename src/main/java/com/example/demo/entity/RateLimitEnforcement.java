@@ -58,4 +58,15 @@ public class RateLimitEnforcement {
     public void setBlockedAt(Timestamp blockedAt) {
         this.blockedAt = blockedAt;
     }
-    public Long getlimitExeededBy
+    public Long getLimitExceededBy(){
+        return limitExceededBy;
+    }
+    public void setLimitExceededBy(Long limitExceededBy){
+        this.limitExceededBy=limitExceededBy
+    }
+    public String getMessage(){
+        return message;
+    }
+    public void setMessage(String message){
+        this.message=message;
+    }
