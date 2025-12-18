@@ -21,7 +21,7 @@ public class ApiKey{
     private Long id;
     @Column(unique=true)
     private String keyValue;
-    private Long ownerld;
+    private Long ownerId;
     @ManyToOne
     private QuotaPlan plan;
     private Boolean active = true;
@@ -99,7 +99,7 @@ public class ApiKey{
     public ApiKey(Long id, String keyValue, Long ownerld, QuotaPlan plan, Boolean active, Timestamp createdAt, Timestamp updatedAt){
         this.id=id;
         this.keyValue=keyValue;
-        this.ownerld=ownerld;
+        this.ownerId=ownerId;
         this.plan=plan;
         this.active=active;
         this.createdAt=createdAt;
