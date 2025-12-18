@@ -50,7 +50,9 @@ public class QuotaPlan{
         this.active=active;
     }
     public QuotaPlan(Long id, String planName, Long dailyLimit, String description, Boolean active){
-        
+        this.id=id;
+        this.planName=planName;
+        this.daily
     }
 
 }
