@@ -6,7 +6,7 @@ public class ApiUsageLog{
     @GenratedValue(strategy = GenerationType.IDENTITY )
     private Long id;
     private String apiKey;
-    private String 
-
+    private String endpoint;
+    private Timestamp timestamp;
 
 }
