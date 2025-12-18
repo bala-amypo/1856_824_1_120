@@ -1,5 +1,5 @@
-// package com.example.demo.entity;
+package com.example.demo.entity;
 
-// public class ApiUsageLog{
-//     pri
-// }
+public class ApiUsageLog{
+    pri
+}
