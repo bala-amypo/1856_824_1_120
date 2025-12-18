@@ -8,37 +8,31 @@ import jakarta.persistence.Column;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-
 import java.sql.Timestamp;
 
-
 @Entity
-public class ApiKey{
+public class ApiKey {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(unique=true)
+
+    @Column(unique = true)
     private String keyValue;
+
     private Long ownerId;
     private String plan;
     private Boolean active = true;
+
     @CreationTimestamp
     private Timestamp createdAt;
+
     @UpdateTimestamp
     private Timestamp updatedAt;
 
-    //@PrePersist
-    //public void onCreate(){
-        //this.createdAt=new Timestamp(System.currentTimeMillis());
-   // }
+    // Getters and Setters
 
-   // @PrePersist
-   //public void onCreate(){
-       //this.updatedAt=new Timestamp(System.currentTimeMillis());
-    //}
-
-   public Long getId() {
+    public Long getId() {
         return id;
     }
 
@@ -82,29 +76,23 @@ public class ApiKey{
         return createdAt;
     }
 
-    // public void setCreatedAt(Timestamp createdAt) {
-    //     this.createdAt = createdAt;
-    // }
-
     public Timestamp getUpdatedAt() {
         return updatedAt;
     }
 
-    // public void setUpdatedAt(Timestamp updatedAt) {
-    //     this.updatedAt = updatedAt;
-    // }
-
-    public ApiKey(Long id, String keyValue, Long ownerld, QuotaPlan plan, Boolean active, Timestamp createdAt, Timestamp updatedAt){
-        this.id=id;
-        this.keyValue=keyValue;
-        this.ownerId=ownerId;
-        this.plan=plan;
-        this.active=active;
-        this.createdAt=createdAt;
-        this.updatedAt=updatedAt;
+    // Parameterized Constructor
+    public ApiKey(Long id, String keyValue, Long ownerId, String plan,
+                  Boolean active, Timestamp createdAt, Timestamp updatedAt) {
+        this.id = id;
+        this.keyValue = keyValue;
+        this.ownerId = ownerId;
+        this.plan = plan;
+        this.active = active;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
-    public ApiKey(){
-        
+
+    // Default Constructor
+    public ApiKey() {
     }
 }
-
