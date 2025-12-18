@@ -5,7 +5,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Column;
-import jakarta.persistence.ManyToOne;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -22,8 +21,7 @@ public class ApiKey{
     @Column(unique=true)
     private String keyValue;
     private Long ownerId;
-    @ManyToOne
-    private QuotaPlan plan;
+    private String plan;
     private Boolean active = true;
     @CreationTimestamp
     private Timestamp createdAt;
@@ -64,11 +62,11 @@ public class ApiKey{
         this.ownerId = ownerId;
     }
 
-    public QuotaPlan getPlan() {
+    public String getPlan() {
         return plan;
     }
 
-    public void setPlan(QuotaPlan plan) {
+    public void setPlan(String plan) {
         this.plan = plan;
     }
 
@@ -108,5 +106,5 @@ public class ApiKey{
     public ApiKey(){
         
     }
-
 }
+
