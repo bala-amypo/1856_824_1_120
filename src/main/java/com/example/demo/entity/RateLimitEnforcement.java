@@ -1,7 +1,5 @@
 package com.example.demo.entity;
 
-package com.example.demo.entity;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
@@ -62,7 +60,7 @@ public class RateLimitEnforcement {
         return limitExceededBy;
     }
     public void setLimitExceededBy(Long limitExceededBy){
-        this.limitExceededBy=limitExceededBy
+        this.limitExceededBy=limitExceededBy;
     }
     public String getMessage(){
         return message;
