@@ -13,7 +13,7 @@ public class KeyExemption {
 
     @PrePersist
     public void onCreate() {
-    this. = new 
+    this.validUntil = new 
     Timestamp(System.currentTimeMillis());
     }
 
