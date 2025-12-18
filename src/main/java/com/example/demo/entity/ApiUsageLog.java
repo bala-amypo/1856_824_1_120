@@ -3,11 +3,29 @@ package com.example.demo.entity;
 import java.sql.Timestamp;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+
 
 
 
 @Entity
 public class ApiUsageLog {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,6 +34,7 @@ public class ApiUsageLog {
     
     private String apiKey;
     private String endpoint;
+    @Timestamp
     private Timestamp timestamp;
 
     
@@ -60,6 +79,6 @@ public class ApiUsageLog {
         this.timestamp=timestamp;
     }
     public ApiUsageLog(){
-        
+
     }
 }
