@@ -4,5 +4,16 @@ import jakarta.persistence.service;
 
 
 public interface ApiKeyService{
-    public ApiKey 
+    public ApiKey createApiKey(ApiKey key);
+
+    public ApiKey updateApiKey(Long id, ApiKey key);
+
+    public ApiKey getApiKeyById(Long id);
+
+    public ApiKey getApiKeyByValue(String keyValue);
+
+    public ApiKey getAllKeys();
+
+    public ApiKey deactivateApiKey(Long id);
+    
 }
