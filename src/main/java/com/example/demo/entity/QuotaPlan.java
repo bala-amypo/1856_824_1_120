@@ -34,5 +34,15 @@ public class QuotaPlan{
     public Integer getDailyLimit(){
         return dailyLimit;
     }
+    public void setDailylimit(Integer dailyLimit){
+        this.dailyLimit=dailyLimit;
+    }
+    public String getDescription(){
+        return description;
+    }
+    public void setDescription(String description){
+        this.description=description;
+    }
+    
 
 }
