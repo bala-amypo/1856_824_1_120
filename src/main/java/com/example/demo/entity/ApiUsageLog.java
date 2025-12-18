@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.PerPersist;
 
 
 
@@ -14,7 +15,7 @@ public class ApiUsageLog {
 
     @PerPersist
     public void onCreate(){
-    createdAt = new 
+    timestamp = new 
     Timestamp(System.currentTimeMillis());
     }
 
