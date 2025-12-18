@@ -1,5 +1,9 @@
 package com.example.demo.entity;
 
+@Entity
 public class ApiUsageLog{
-    pri
+    @Id
+    @GenratedValue
+    private Long id;
+
 }
