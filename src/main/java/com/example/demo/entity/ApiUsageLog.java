@@ -13,11 +13,11 @@ import jakarta.persistence.PerPersist;
 @Entity
 public class ApiUsageLog {
 
-    @PerPersist
-    public void onCreate(){
-    this.timestamp = new 
-    Timestamp(System.currentTimeMillis());
-    }
+@PerPersist
+public void onCreate(){
+this.timestamp = new 
+Timestamp(System.currentTimeMillis());
+}
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

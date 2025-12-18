@@ -1,6 +1,6 @@
-package com.example.demo.dto;
+// package com.example.demo.dto;
 
 
-public class AuthRequestDto{
+// public class AuthRequestDto{
     
-}
+// }
