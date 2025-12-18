@@ -12,20 +12,11 @@ import jakarta.persistence.GenerationType;
 @Entity
 public class ApiUsageLog {
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
+    @PerPersist
+    public void onCreate(){
+    createdAt = new 
+    Timestamp(System.currentTimeMillis());
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
