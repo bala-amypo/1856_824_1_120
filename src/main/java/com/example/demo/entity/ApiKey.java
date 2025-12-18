@@ -1,112 +1,112 @@
-package com.example.demo.entity;
+// package com.example.demo.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Column;
-import jakarta.persistence.ManyToOne;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
-
-
-import java.sql.Timestamp;
+// import jakarta.persistence.Entity;
+// import jakarta.persistence.Id;
+// import jakarta.persistence.GeneratedValue;
+// import jakarta.persistence.GenerationType;
+// import jakarta.persistence.Column;
+// import jakarta.persistence.ManyToOne;
+// import org.hibernate.annotations.CreationTimestamp;
+// import org.hibernate.annotations.UpdateTimestamp;
 
 
-@Entity
-public class ApiKey{
+// import java.sql.Timestamp;
 
-    @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Long id;
-    @Column(unique=true)
-    private String keyValue;
-    private Long ownerId;
-    @ManyToOne
-    private QuotaPlan plan;
-    private Boolean active = true;
-    @CreationTimestamp
-    private Timestamp createdAt;
-    @UpdateTimestamp
-    private Timestamp updatedAt;
 
-    //@PrePersist
-    //public void onCreate(){
-        //this.createdAt=new Timestamp(System.currentTimeMillis());
-   // }
+// @Entity
+// public class ApiKey{
 
-   // @PrePersist
-   //public void onCreates(){
-       //this.updatedAt=new Timestamp(System.currentTimeMillis());
-    //}
+//     @Id
+//     @GeneratedValue(strategy=GenerationType.IDENTITY)
+//     private Long id;
+//     @Column(unique=true)
+//     private String keyValue;
+//     private Long ownerId;
+//     @ManyToOne
+//     private QuotaPlan plan;
+//     private Boolean active = true;
+//     @CreationTimestamp
+//     private Timestamp createdAt;
+//     @UpdateTimestamp
+//     private Timestamp updatedAt;
 
-   public Long getId() {
-        return id;
-    }
+//     //@PrePersist
+//     //public void onCreate(){
+//         //this.createdAt=new Timestamp(System.currentTimeMillis());
+//    // }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+//    // @PrePersist
+//    //public void onCreates(){
+//        //this.updatedAt=new Timestamp(System.currentTimeMillis());
+//     //}
 
-    public String getKeyValue() {
-        return keyValue;
-    }
+//    public Long getId() {
+//         return id;
+//     }
 
-    public void setKeyValue(String keyValue) {
-        this.keyValue = keyValue;
-    }
+//     public void setId(Long id) {
+//         this.id = id;
+//     }
 
-    public Long getOwnerId() {
-        return ownerId;
-    }
+//     public String getKeyValue() {
+//         return keyValue;
+//     }
 
-    public void setOwnerId(Long ownerId) {
-        this.ownerId = ownerId;
-    }
+//     public void setKeyValue(String keyValue) {
+//         this.keyValue = keyValue;
+//     }
 
-    public QuotaPlan getPlan() {
-        return plan;
-    }
+//     public Long getOwnerId() {
+//         return ownerId;
+//     }
 
-    public void setPlan(QuotaPlan plan) {
-        this.plan = plan;
-    }
+//     public void setOwnerId(Long ownerId) {
+//         this.ownerId = ownerId;
+//     }
 
-    public Boolean getActive() {
-        return active;
-    }
+//     public QuotaPlan getPlan() {
+//         return plan;
+//     }
 
-    public void setActive(Boolean active) {
-        this.active = active;
-    }
+//     public void setPlan(QuotaPlan plan) {
+//         this.plan = plan;
+//     }
 
-    public Timestamp getCreatedAt() {
-        return createdAt;
-    }
+//     public Boolean getActive() {
+//         return active;
+//     }
 
-    // public void setCreatedAt(Timestamp createdAt) {
-    //     this.createdAt = createdAt;
-    // }
+//     public void setActive(Boolean active) {
+//         this.active = active;
+//     }
 
-    public Timestamp getUpdatedAt() {
-        return updatedAt;
-    }
+//     public Timestamp getCreatedAt() {
+//         return createdAt;
+//     }
 
-    // public void setUpdatedAt(Timestamp updatedAt) {
-    //     this.updatedAt = updatedAt;
-    // }
+//     // public void setCreatedAt(Timestamp createdAt) {
+//     //     this.createdAt = createdAt;
+//     // }
 
-    public ApiKey(Long id, String keyValue, Long ownerld, QuotaPlan plan, Boolean active, Timestamp createdAt, Timestamp updatedAt){
-        this.id=id;
-        this.keyValue=keyValue;
-        this.ownerId=ownerId;
-        this.plan=plan;
-        this.active=active;
-        this.createdAt=createdAt;
-        this.updatedAt=updatedAt;
-    }
-    public ApiKey(){
+//     public Timestamp getUpdatedAt() {
+//         return updatedAt;
+//     }
+
+//     // public void setUpdatedAt(Timestamp updatedAt) {
+//     //     this.updatedAt = updatedAt;
+//     // }
+
+//     public ApiKey(Long id, String keyValue, Long ownerld, QuotaPlan plan, Boolean active, Timestamp createdAt, Timestamp updatedAt){
+//         this.id=id;
+//         this.keyValue=keyValue;
+//         this.ownerId=ownerId;
+//         this.plan=plan;
+//         this.active=active;
+//         this.createdAt=createdAt;
+//         this.updatedAt=updatedAt;
+//     }
+//     public ApiKey(){
         
-    }
+//     }
 
-}
+// }
