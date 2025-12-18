@@ -70,3 +70,17 @@ public class RateLimitEnforcement {
     public void setMessage(String message){
         this.message=message;
     }
+    public RateLimitEnforcement(Long id, String apiKey, Timestamp blockedAt,
+                                Long limitExceededBy, String message) {
+        this.id = id;
+        this.apiKey = apiKey;
+        this.blockedAt = blockedAt;
+        this.limitExceededBy = limitExceededBy;
+        this.message = message;
+    }
+
+    // Default Constructor
+    public RateLimitEnforcement() {
+
+    }
+}
