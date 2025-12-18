@@ -53,5 +53,7 @@ public class ApiUsageLog {
     public void setTimestamp(Timestamp timestamp) {
         this.timestamp = timestamp;
     }
-    public ApiUsageLog(Long id, ApiKey api)
+    public ApiUsageLog(Long id, String apiKey, Timestamp endpoint, Timestamp timestamp ){
+        this.
+    }
 }
