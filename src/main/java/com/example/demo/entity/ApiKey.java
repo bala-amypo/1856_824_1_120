@@ -30,15 +30,15 @@ public class ApiKey{
     @UpdateTimestamp
     private Timestamp updatedAt;
 
-    @PrePersist
-    public void onCreate(){
-        this.createdAt=new Timestamp(System.currentTimeMillis());
-    }
+    //@PrePersist
+    //public void onCreate(){
+        //this.createdAt=new Timestamp(System.currentTimeMillis());
+   // }
 
-    @PrePersist
-    public void onCreates(){
-        this.updatedAt=new Timestamp(System.currentTimeMillis());
-    }
+   // @PrePersist
+   //public void onCreates(){
+       //this.updatedAt=new Timestamp(System.currentTimeMillis());
+    //}
 
    public Long getId() {
         return id;
