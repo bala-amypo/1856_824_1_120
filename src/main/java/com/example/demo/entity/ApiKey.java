@@ -6,6 +6,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Column;
 import jakarta.persistence.ManyToOne;
+import org.hibernate.annotations.CreationTimestamp;
+
 
 import java.sql.Timestamp;
 
@@ -22,6 +24,7 @@ public class ApiKey{
     @ManyToOne
     private QuotaPlan plan;
     private Boolean active = true;
+    
     private Timestamp createdAt;
     private Timestamp updatedAt;
 

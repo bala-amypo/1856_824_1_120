@@ -31,10 +31,10 @@ public class QuotaPlan{
     public void setPlanName(String planName){
         this.planName=planName;
     }
-    public Integer getDailyLimit(){
+    public Long getDailyLimit(){
         return dailyLimit;
     }
-    public void setDailylimit(Integer dailyLimit){
+    public void setDailylimit(Long dailyLimit){
         this.dailyLimit=dailyLimit;
     }
     public String getDescription(){
@@ -49,6 +49,8 @@ public class QuotaPlan{
     public void setActive(Boolean active){
         this.active=active;
     }
-    public QuotaPlan(Long id, String planName, In)
+    public QuotaPlan(Long id, String planName, Long dailyLimit, String description, Boolean active){
+        
+    }
 
 }
