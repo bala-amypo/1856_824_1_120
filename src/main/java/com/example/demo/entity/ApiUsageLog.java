@@ -15,7 +15,7 @@ public class ApiUsageLog {
 
     @PerPersist
     public void onCreate(){
-    timestamp = new 
+    this.timestamp = new 
     Timestamp(System.currentTimeMillis());
     }
 
