@@ -14,7 +14,7 @@ public class QuotaPlan{
     private Long id;
     @column(unique=true);
     private String planName;
-    private Integer dailyLimit;
+    private Long dailyLimit;
     private String description;
     private Boolean active;
 
@@ -49,6 +49,6 @@ public class QuotaPlan{
     public void setActive(Boolean active){
         this.active=active;
     }
-    public QuotaPlan()
+    public QuotaPlan(Long id, String planName, In)
 
 }
