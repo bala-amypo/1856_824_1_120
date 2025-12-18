@@ -26,7 +26,7 @@ Timestamp(System.currentTimeMillis());
     
     private String apiKey;
     private String endpoint;
-    @Timestamp
+    
     private Timestamp timestamp;
 
     
