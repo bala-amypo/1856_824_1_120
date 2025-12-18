@@ -12,7 +12,7 @@ public class QuotaPlan{
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
-    @column(unique=true);
+    @Column(unique=true)
     private String planName;
     private Long dailyLimit;
     private String description;
@@ -52,7 +52,7 @@ public class QuotaPlan{
     public QuotaPlan(Long id, String planName, Long dailyLimit, String description, Boolean active){
         this.id=id;
         this.planName=planName;
-        this.dailylimit=dailylimit;
+        this.dailyLimit=dailyLimit;
         this.description=description;
         this.active=active;
     }
