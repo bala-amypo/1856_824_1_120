@@ -43,6 +43,12 @@ public class QuotaPlan{
     public void setDescription(String description){
         this.description=description;
     }
-    
+    public Boolean getActve(){
+        return active;
+    }
+    public void setActive(Boolean active){
+        this.active=active;
+    }
+    public QuotaPlan()
 
 }
