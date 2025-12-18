@@ -56,7 +56,6 @@ public class ApiUsageLog {
         this.endpoint = endpoint;
     }
 
-    
     public Timestamp getTimestamp() {
         return timestamp;
     }
