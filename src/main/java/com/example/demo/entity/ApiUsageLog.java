@@ -54,6 +54,12 @@ public class ApiUsageLog {
         this.timestamp = timestamp;
     }
     public ApiUsageLog(Long id, String apiKey, Timestamp endpoint, Timestamp timestamp ){
-        this.
+        this.id=id;
+        this.apiKey=apiKey;
+        this.endpoint=endpoint;
+        this.timestamp=timestamp;
+    }
+    public ApiUsageLog(){
+        
     }
 }
