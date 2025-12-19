@@ -4,14 +4,10 @@ import jakarta.persistence.service;
 
 
 public interface RateLimitEnforcementService{
-    public RateLimitEnforcement createEnforcement();
+    public RateLimitEnforcement createEnforcement(RateLimitEnforcement enforcement);
 
-    public RateLimitEnforcement updateQuotaPlan(Long id, QuotaPlan plan);
+    public RateLimitEnforcement getEnforcementsForKey(Long keyId);
 
-    public RateLimitEnforcement getQuotaPlanById(Long id);
+    public RateLimitEnforcement getEnforcementById(Long id);
 
-    public QuotaPlan getAllPlans();
-
-    public QuotaPlan deactivateQuotaPlan(Long id);
-    
 }
