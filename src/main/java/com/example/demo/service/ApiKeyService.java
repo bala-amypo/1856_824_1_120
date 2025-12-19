@@ -2,7 +2,7 @@ package com.example.demo.service;
 import com.example.demo.entity.ApiKey;
 import jakarta.persistence.service;
 
-
+@Service
 public interface ApiKeyService{
     public ApiKey createApiKey(ApiKey key);
 
@@ -16,6 +16,6 @@ public interface ApiKeyService{
 
     public ApiKey deactivateApiKey(Long id);
 
-    
+
     
 }

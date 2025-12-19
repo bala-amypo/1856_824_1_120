@@ -3,6 +3,7 @@ import com.example.demo.entity.KeyExemption;
 import jakarta.persistence.service;
 
 
+@Service
 public interface KeyExemptionService{
     public KeyExemption createExemption(KeyExemption exemption);
 

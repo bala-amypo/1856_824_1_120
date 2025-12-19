@@ -2,7 +2,7 @@ package com.example.demo.service;
 import com.example.demo.entity.ApiUsageLog;
 import jakarta.persistence.service;
 
-
+@Service
 public interface ApiUsageLogService{
     public ApiUsageLog logUsage(ApiUsageLog Log);
 

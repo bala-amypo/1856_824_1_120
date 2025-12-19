@@ -3,6 +3,7 @@ import com.example.demo.entity.QuotaPlan;
 import jakarta.persistence.service;
 
 
+@Service
 public interface QuotaPlanService{
     public QuotaPlan createQuotaPlan(QuotaPlan plan);
 

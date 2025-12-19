@@ -2,7 +2,7 @@ package com.example.demo.service;
 import com.example.demo.entity.RateLimitEnforcement;
 import jakarta.persistence.service;
 
-
+@Service
 public interface RateLimitEnforcementService{
     public RateLimitEnforcement createEnforcement(RateLimitEnforcement enforcement);
 
