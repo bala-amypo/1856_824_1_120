@@ -1,13 +1,13 @@
 package com.example.demo.service;
-import com.example.demo.entity.RateLimitEnforcement;
+import com.example.demo.entity.KeyExemption;
 import jakarta.persistence.service;
 
 
-public interface RateLimitEnforcementService{
-    public RateLimitEnforcement createEnforcement(RateLimitEnforcement enforcement);
+public interface KeyExemptionService{
+    public KeyExemption createExemption(KeyExemption exemption);
 
-    public RateLimitEnforcement getEnforcementsForKey(Long keyId);
+    public KeyExemption updateExemption(Long Id, KeyExemption exemption);
 
-    public RateLimitEnforcement getEnforcementById(Long id);
+    public KeyExemption getEnforcementById(Long id);
 
 }
