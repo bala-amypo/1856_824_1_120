@@ -1,6 +1,6 @@
 package com.example.demo.service;
 import com.example.demo.entity.ApiKey;
-import jakarta.persistence.service;
+import jakarta.persistence.Service;
 
 @Service
 public interface ApiKeyService{

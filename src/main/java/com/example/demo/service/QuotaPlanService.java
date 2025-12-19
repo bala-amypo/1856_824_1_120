@@ -1,6 +1,6 @@
 package com.example.demo.service;
 import com.example.demo.entity.QuotaPlan;
-import jakarta.persistence.service;
+import jakarta.persistence.Service;
 
 
 @Service
