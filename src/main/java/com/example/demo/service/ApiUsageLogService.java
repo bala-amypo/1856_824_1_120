@@ -4,16 +4,16 @@ import jakarta.persistence.service;
 
 
 public interface ApiUsageLogService{
-    public ApiKey createApiKey(ApiKey key);
+    public ApiUsageLog logUsage(ApiUsageLog Log);
 
-    public ApiKey updateApiKey(Long id, ApiKey key);
+    public ApiUsageLog getUsageForApiKey( Long keyId);
 
-    public ApiKey getApiKeyById(Long id);
+    public ApiUsageLog getApiKeyById(Long id);
 
-    public ApiKey getApiKeyByValue(String keyValue);
+    public ApiUsageLog getApiKeyByValue(String keyValue);
 
-    public ApiKey getAllKeys();
+    public ApiUsageLog getAllKeys();
 
-    public ApiKey deactivateApiKey(Long id);
+    public ApiUsageLog deactivateApiKey(Long id);
     
 }
