@@ -8,12 +8,8 @@ public interface ApiUsageLogService{
 
     public ApiUsageLog getUsageForApiKey( Long keyId);
 
-    public ApiUsageLog getApiKeyById(Long id);
+    public ApiUsageLog getUsageForToday(Long KeyId);
 
-    public ApiUsageLog getApiKeyByValue(String keyValue);
-
-    public ApiUsageLog getAllKeys();
-
-    public ApiUsageLog deactivateApiKey(Long id);
+    public ApiUsageLog countRequestsToday(Long keyId);
     
 }
