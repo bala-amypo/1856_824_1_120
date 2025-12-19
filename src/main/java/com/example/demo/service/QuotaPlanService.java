@@ -3,12 +3,12 @@ import com.example.demo.entity.QuotaPlan;
 import jakarta.persistence.service;
 
 
-public interface ApiKeyService{
-    public ApiKey createApiKey(ApiKey key);
+public interface QuotaPlanService{
+    public QuotaPlan createQuotaPlan(QuotaPlan plan);
 
-    public ApiKey updateApiKey(Long id, ApiKey key);
+    public QuotaPlan updateQuotaPlan(Long id, QuotaPlan plan);
 
-    public ApiKey getApiKeyById(Long id);
+    public QuotaPlan getQuotaPlanById(Long id);
 
     public ApiKey getApiKeyByValue(String keyValue);
 
