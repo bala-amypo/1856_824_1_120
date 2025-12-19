@@ -3,10 +3,10 @@ import com.example.demo.entity.KeyExemption;
 import jakarta.persistence.service;
 
 
-public interface KeyExcemptionService{
+public interface KeyExemptionService{
     public KeyExemption createExemption(KeyExemption exemption);
 
-    public KeyExemption updateExemption(Long Id, KeyExcemption exemption);
+    public KeyExemption updateExemption(Long Id, KeyExemption exemption);
 
     public KeyExemption getExemptionByKey(Long apiKeyId);
 
