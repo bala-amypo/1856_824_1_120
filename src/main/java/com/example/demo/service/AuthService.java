@@ -4,4 +4,6 @@ import jakarta.persistence.sevice;
 
 public interface AuthService{
     public UserAccount register(RegisterRequestDto request);
+
+    public UserAccount login(AuthRequestDto request)
 }
