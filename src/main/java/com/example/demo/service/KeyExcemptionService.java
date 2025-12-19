@@ -8,6 +8,8 @@ public interface KeyExemptionService{
 
     public KeyExemption updateExemption(Long Id, KeyExemption exemption);
 
-    public KeyExemption getEnforcementById(Long id);
+    public KeyExemption getExemptionByKey(Long apiKeyId);
+
+    public KeyExemption getAllExemption();
 
 }
