@@ -10,10 +10,8 @@ public interface QuotaPlanService{
 
     public QuotaPlan getQuotaPlanById(Long id);
 
-    public ApiKey getApiKeyByValue(String keyValue);
+    public QuotaPlan getAllPlans();
 
-    public ApiKey getAllKeys();
-
-    public ApiKey deactivateApiKey(Long id);
+    public QuotaPlan deactivateQuotaPlan(Long id);
     
 }
