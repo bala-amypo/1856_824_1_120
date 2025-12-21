@@ -79,8 +79,7 @@ public class ApiKey {
     public Timestamp getUpdatedAt() {
         return updatedAt;
     }
-
-    // Parameterized Constructor
+    
     public ApiKey(Long id, String keyValue, Long ownerId, String plan,
                   Boolean active, Timestamp createdAt, Timestamp updatedAt) {
         this.id = id;
