@@ -5,12 +5,12 @@ import jakarta.persistence.Service;
 
 @Service
 public interface KeyExemptionService{
-    public KeyExemption createExemption(KeyExemption exemption);
+     KeyExemption createExemption(KeyExemption exemption);
 
-    public KeyExemption updateExemption(Long Id, KeyExemption exemption);
+     KeyExemption updateExemption(Long Id, KeyExemption exemption);
 
-    public KeyExemption getExemptionByKey(Long apiKeyId);
+     KeyExemption getExemptionByKey(Long apiKeyId);
 
-    public KeyExemption getAllExemption();
+     KeyExemption getAllExemption();
 
 }

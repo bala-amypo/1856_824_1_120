@@ -3,16 +3,15 @@ import com.example.demo.entity.QuotaPlan;
 import jakarta.persistence.Service;
 
 
-@Service
 public interface QuotaPlanService{
-    public QuotaPlan createQuotaPlan(QuotaPlan plan);
+     QuotaPlan createQuotaPlan(QuotaPlan plan);
 
-    public QuotaPlan updateQuotaPlan(Long id, QuotaPlan plan);
+     QuotaPlan updateQuotaPlan(Long id, QuotaPlan plan);
 
-    public QuotaPlan getQuotaPlanById(Long id);
+     QuotaPlan getQuotaPlanById(Long id);
 
-    public QuotaPlan getAllPlans();
+     QuotaPlan getAllPlans();
 
-    public QuotaPlan deactivateQuotaPlan(Long id);
+     QuotaPlan deactivateQuotaPlan(Long id);
     
 }
