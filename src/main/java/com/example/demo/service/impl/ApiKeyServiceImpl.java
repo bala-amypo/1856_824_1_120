@@ -20,7 +20,7 @@ public class ApiKeyServiceImpl implements ApiKeyService {
 
     @Override
     public ApiKey createApiKey(ApiKey key) {
-        if (key.getQuotaPlan() == null || !key.getQuotaPlan().getActive()) {
+        if (key.getQuotaPlan() == null || !key.getQuotaPlan().isActive()) {
             throw new BadRequestException("Plan is inactive");
         }
         return repo.save(key);

@@ -5,9 +5,9 @@ import java.util.List;
 
 public interface ApiKeyService {
 
-    ApiKey createApiKey(ApiKey key);
+    ApiKey createApiKey(ApiKey apiKey);
 
-    ApiKey updateApiKey(Long id, ApiKey key);
+    ApiKey updateApiKey(Long id, ApiKey apiKey);
 
     ApiKey getApiKeyById(Long id);
 
