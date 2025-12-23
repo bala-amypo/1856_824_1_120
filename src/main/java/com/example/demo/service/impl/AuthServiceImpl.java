@@ -13,20 +13,33 @@ public class AuthServiceImpl implements AuthService {
     @Autowired
     private UserAccountRepository userAccountRepository;
 
+    // ✅ matches: UserAccount register(UserAccount user)
     @Override
     public UserAccount register(UserAccount user) {
+
+        if (userAccountRepository.existsByEmail(user.getEmail())) {
+            throw new RuntimeException("Email already exists");
+        }
+
+        // default role if not set
+        if (user.getRole() == null) {
+            user.setRole("ROLE_USER");
+        }
+
         return userAccountRepository.save(user);
     }
 
+    // ✅ matches: String login(String username, String password)
     @Override
-    public UserAccount login(String email, String password) {
-        UserAccount user = userAccountRepository.findByEmail(email)
+    public String login(String username, String password) {
+
+        UserAccount user = userAccountRepository.findByEmail(username)
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
         if (!user.getPassword().equals(password)) {
             throw new RuntimeException("Invalid credentials");
         }
 
-        return user;
+        return "Login successful";
     }
 }
