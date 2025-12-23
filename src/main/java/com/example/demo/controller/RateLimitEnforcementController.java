@@ -1,36 +1,37 @@
-// package com.example.demo.controller;
+package com.example.demo.controller;
 
-// import com.example.demo.entity.RateLimitEnforcement;
-// import com.example.demo.service.RateLimitEnforcementService;
-// import io.swagger.v3.oas.annotations.tags.Tag;
-// import org.springframework.web.bind.annotation.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
-// import java.util.List;
+import com.example.demo.entity.RateLimitEnforcement;
+import com.example.demo.service.RateLimitEnforcementService;
 
-// @RestController
-// @RequestMapping("/api/enforcements")
-// @Tag(name = "Rate Limit Enforcements")
-// public class RateLimitEnforcementController {
+import io.swagger.v3.oas.annotations.tags.Tag;
 
-//     private final RateLimitEnforcementService enforcementService;
+import java.util.List;
 
-//     public RateLimitEnforcementController(RateLimitEnforcementService enforcementService) {
-//         this.enforcementService = enforcementService;
-//     }
+@RestController
+@RequestMapping("/api/enforcements")
+@Tag(name = "Rate Limit Enforcement")
+public class RateLimitEnforcementController {
 
-//     @PostMapping
-//     public RateLimitEnforcement createEnforcement(
-//             @RequestBody RateLimitEnforcement enforcement) {
-//         return enforcementService.createEnforcement(enforcement);
-//     }
+    @Autowired
+    private RateLimitEnforcementService enforcementService;
 
-//     @GetMapping("/{id}")
-//     public RateLimitEnforcement getById(@PathVariable Long id) {
-//         return enforcementService.getEnforcementById(id);
-//     }
+    @PostMapping
+    public RateLimitEnforcement createEnforcement(
+            @RequestBody RateLimitEnforcement enforcement) {
+        return enforcementService.createEnforcement(enforcement);
+    }
 
-//     @GetMapping("/key/{keyId}")
-//     public List<RateLimitEnforcement> getByKey(@PathVariable Long keyId) {
-//         return enforcementService.getEnforcementsForKey(keyId);
-//     }
-// }
+    @GetMapping("/{id}")
+    public RateLimitEnforcement getEnforcementById(@PathVariable Long id) {
+        return enforcementService.getEnforcementById(id);
+    }
+
+    @GetMapping("/key/{keyId}")
+    public List<RateLimitEnforcement> getEnforcementsForKey(
+            @PathVariable Long keyId) {
+        return enforcementService.getEnforcementsForKey(keyId);
+    }
+}
