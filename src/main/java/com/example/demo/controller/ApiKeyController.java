@@ -1,45 +1,45 @@
-// package com.example.demo.controller;
+package com.example.demo.controller;
 
-// import com.example.demo.entity.ApiKey;
-// import com.example.demo.service.ApiKeyService;
-// import io.swagger.v3.oas.annotations.tags.Tag;
-// import org.springframework.web.bind.annotation.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
-// import java.util.List;
+import com.example.demo.entity.ApiKey;
+import com.example.demo.service.ApiKeyService;
 
-// @RestController
-// @RequestMapping("/api/api-keys")
-// @Tag(name = "API Keys")
-// public class ApiKeyController {
+import io.swagger.v3.oas.annotations.tags.Tag;
 
-//     private final ApiKeyService apiKeyService;
+import java.util.List;
 
-//     public ApiKeyController(ApiKeyService apiKeyService) {
-//         this.apiKeyService = apiKeyService;
-//     }
+@RestController
+@RequestMapping("/api/api-keys")
+@Tag(name = "API Keys")
+public class ApiKeyController {
 
-//     @PostMapping
-//     public ApiKey createApiKey(@RequestBody ApiKey apiKey) {
-//         return apiKeyService.createApiKey(apiKey);
-//     }
+    @Autowired
+    private ApiKeyService apiKeyService;
 
-//     @PutMapping("/{id}")
-//     public ApiKey updateApiKey(@PathVariable Long id, @RequestBody ApiKey apiKey) {
-//         return apiKeyService.updateApiKey(id, apiKey);
-//     }
+    @PostMapping
+    public ApiKey createApiKey(@RequestBody ApiKey key) {
+        return apiKeyService.createApiKey(key);
+    }
 
-//     @GetMapping("/{id}")
-//     public ApiKey getApiKeyById(@PathVariable Long id) {
-//         return apiKeyService.getApiKeyById(id);
-//     }
+    @PutMapping("/{id}")
+    public ApiKey updateApiKey(@PathVariable Long id, @RequestBody ApiKey key) {
+        return apiKeyService.updateApiKey(id, key);
+    }
 
-//     @GetMapping
-//     public List<ApiKey> getAllApiKeys() {
-//         return apiKeyService.getAllApiKeys();
-//     }
+    @GetMapping("/{id}")
+    public ApiKey getApiKeyById(@PathVariable Long id) {
+        return apiKeyService.getApiKeyById(id);
+    }
 
-//     @PutMapping("/{id}/deactivate")
-//     public void deactivateApiKey(@PathVariable Long id) {
-//         apiKeyService.deactivateApiKey(id);
-//     }
-// }
+    @GetMapping
+    public List<ApiKey> getAllApiKeys() {
+        return apiKeyService.getAllApiKeys();
+    }
+
+    @PutMapping("/{id}/deactivate")
+    public void deactivateApiKey(@PathVariable Long id) {
+        apiKeyService.deactivateApiKey(id);
+    }
+}
