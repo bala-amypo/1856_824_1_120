@@ -24,10 +24,8 @@ public class ApiKey {
     private Timestamp createdAt;
     private Timestamp updatedAt;
 
-    // ✅ Empty constructor
     public ApiKey() {}
 
-    // ✅ All-args constructor
     public ApiKey(Long id, String keyValue, Long ownerId, QuotaPlan plan,
                   Boolean active, Timestamp createdAt, Timestamp updatedAt) {
         this.id = id;
@@ -39,7 +37,6 @@ public class ApiKey {
         this.updatedAt = updatedAt;
     }
 
-    // Getters & Setters
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 

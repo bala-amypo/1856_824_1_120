@@ -13,7 +13,6 @@ public class AuthServiceImpl implements AuthService {
     @Autowired
     private UserAccountRepository userAccountRepository;
 
-    // ✅ matches: UserAccount register(UserAccount user)
     @Override
     public UserAccount register(UserAccount user) {
 
@@ -29,7 +28,6 @@ public class AuthServiceImpl implements AuthService {
         return userAccountRepository.save(user);
     }
 
-    // ✅ matches: String login(String username, String password)
     @Override
     public String login(String username, String password) {
 
