@@ -1,6 +1,7 @@
 package com.example.demo.entity;
 
 import jakarta.persistence.*;
+import java.sql.Timestamp;
 
 @Entity
 public class ApiKey {
@@ -9,54 +10,54 @@ public class ApiKey {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
-
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     private String keyValue;
 
-    private boolean active = true;
+    private Long ownerId;
 
     @ManyToOne
-    private QuotaPlan quotaPlan;
+    @JoinColumn(name = "plan_id")
+    private QuotaPlan plan;
 
+    private Boolean active = true;
 
-    public Long getId() {
-        return id;
-    }
+    private Timestamp createdAt;
+    private Timestamp updatedAt;
 
-    public void setId(Long id) {
+    // ✅ Empty constructor
+    public ApiKey() {}
+
+    // ✅ All-args constructor
+    public ApiKey(Long id, String keyValue, Long ownerId, QuotaPlan plan,
+                  Boolean active, Timestamp createdAt, Timestamp updatedAt) {
         this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getKeyValue() {
-        return keyValue;
-    }
-
-    public void setKeyValue(String keyValue) {
         this.keyValue = keyValue;
-    }
-
-    public boolean isActive() {
-        return active;
-    }
-
-    public void setActive(boolean active) {
+        this.ownerId = ownerId;
+        this.plan = plan;
         this.active = active;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 
-    public QuotaPlan getQuotaPlan() {
-        return quotaPlan;
-    }
+    // Getters & Setters
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
-    public void setQuotaPlan(QuotaPlan quotaPlan) {
-        this.quotaPlan = quotaPlan;
-    }
+    public String getKeyValue() { return keyValue; }
+    public void setKeyValue(String keyValue) { this.keyValue = keyValue; }
+
+    public Long getOwnerId() { return ownerId; }
+    public void setOwnerId(Long ownerId) { this.ownerId = ownerId; }
+
+    public QuotaPlan getPlan() { return plan; }
+    public void setPlan(QuotaPlan plan) { this.plan = plan; }
+
+    public Boolean getActive() { return active; }
+    public void setActive(Boolean active) { this.active = active; }
+
+    public Timestamp getCreatedAt() { return createdAt; }
+    public void setCreatedAt(Timestamp createdAt) { this.createdAt = createdAt; }
+
+    public Timestamp getUpdatedAt() { return updatedAt; }
+    public void setUpdatedAt(Timestamp updatedAt) { this.updatedAt = updatedAt; }
 }
