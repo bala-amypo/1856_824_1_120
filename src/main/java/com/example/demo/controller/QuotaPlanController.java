@@ -1,45 +1,45 @@
-// package com.example.demo.controller;
+package com.example.demo.controller;
 
-// import com.example.demo.entity.QuotaPlan;
-// import com.example.demo.service.QuotaPlanService;
-// import io.swagger.v3.oas.annotations.tags.Tag;
-// import org.springframework.web.bind.annotation.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
-// import java.util.List;
+import com.example.demo.entity.QuotaPlan;
+import com.example.demo.service.QuotaPlanService;
 
-// @RestController
-// @RequestMapping("/api/quota-plans")
-// @Tag(name = "Quota Plans")
-// public class QuotaPlanController {
+import io.swagger.v3.oas.annotations.tags.Tag;
 
-//     private final QuotaPlanService quotaPlanService;
+import java.util.List;
 
-//     public QuotaPlanController(QuotaPlanService quotaPlanService) {
-//         this.quotaPlanService = quotaPlanService;
-//     }
+@RestController
+@RequestMapping("/api/quota-plans")
+@Tag(name = "Quota Plans")
+public class QuotaPlanController {
 
-//     @PostMapping
-//     public QuotaPlan createPlan(@RequestBody QuotaPlan plan) {
-//         return quotaPlanService.createQuotaPlan(plan);
-//     }
+    @Autowired
+    private QuotaPlanService quotaPlanService;
 
-//     @PutMapping("/{id}")
-//     public QuotaPlan updatePlan(@PathVariable Long id, @RequestBody QuotaPlan plan) {
-//         return quotaPlanService.updateQuotaPlan(id, plan);
-//     }
+    @PostMapping
+    public QuotaPlan createPlan(@RequestBody QuotaPlan plan) {
+        return quotaPlanService.createQuotaPlan(plan);
+    }
 
-//     @GetMapping("/{id}")
-//     public QuotaPlan getPlanById(@PathVariable Long id) {
-//         return quotaPlanService.getQuotaPlanById(id);
-//     }
+    @PutMapping("/{id}")
+    public QuotaPlan updatePlan(@PathVariable Long id, @RequestBody QuotaPlan plan) {
+        return quotaPlanService.updateQuotaPlan(id, plan);
+    }
 
-//     @GetMapping
-//     public List<QuotaPlan> getAllPlans() {
-//         return quotaPlanService.getAllPlans();
-//     }
+    @GetMapping("/{id}")
+    public QuotaPlan getPlanById(@PathVariable Long id) {
+        return quotaPlanService.getQuotaPlanById(id);
+    }
 
-//     @PutMapping("/{id}/deactivate")
-//     public void deactivatePlan(@PathVariable Long id) {
-//         quotaPlanService.deactivateQuotaPlan(id);
-//     }
-// }
+    @GetMapping
+    public List<QuotaPlan> getAllPlans() {
+        return quotaPlanService.getAllPlans();
+    }
+
+    @PutMapping("/{id}/deactivate")
+    public void deactivatePlan(@PathVariable Long id) {
+        quotaPlanService.deactivateQuotaPlan(id);
+    }
+}
