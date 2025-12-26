@@ -7,7 +7,9 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import java.util.Date;
 import java.util.Map;
 
-@Service
+import org.springframework.stereotype.Component;
+
+@Component   // ✅ Use Component, NOT Service
 public class JwtUtil {
 
     private final String SECRET = "secretkey123456";
