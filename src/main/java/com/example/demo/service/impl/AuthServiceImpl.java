@@ -14,8 +14,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @Service
 public class AuthServiceImpl implements AuthService {
 
@@ -24,13 +22,12 @@ public class AuthServiceImpl implements AuthService {
     private final AuthenticationManager authenticationManager;
     private final JwtUtil jwtUtil;
 
-    // ✅ THIS CONSTRUCTOR MUST MATCH THE TEST
     public AuthServiceImpl(
             UserAccountRepository userAccountRepository,
             PasswordEncoder passwordEncoder,
             AuthenticationManager authenticationManager,
-            JwtUtil jwtUtil
-    ) {
+            JwtUtil jwtUtil) {
+
         this.userAccountRepository = userAccountRepository;
         this.passwordEncoder = passwordEncoder;
         this.authenticationManager = authenticationManager;
@@ -40,22 +37,26 @@ public class AuthServiceImpl implements AuthService {
     @Override
     public AuthResponseDto register(RegisterRequestDto request) {
 
-        Optional<UserAccount> existing =
-                userAccountRepository.findByEmail(request.getEmail());
-
-        if (existing.isPresent()) {
-            throw new BadRequestException("Email already registered");
+        if (userAccountRepository.findByEmail(request.getEmail()).isPresent()) {
+            throw new BadRequestException("Email already exists");
         }
 
         UserAccount user = new UserAccount();
         user.setUsername(request.getUsername());
         user.setEmail(request.getEmail());
         user.setPassword(passwordEncoder.encode(request.getPassword()));
-        user.setRole("USER");
 
-        userAccountRepository.save(user);
+        UserAccount saved = userAccountRepository.save(user);
 
-        return new AuthResponseDto("User registered successfully");
+        String token = jwtUtil.generateToken(saved.getUsername());
+
+        return new AuthResponseDto(
+                saved.getId(),
+                saved.getUsername(),
+                saved.getEmail(),
+                token,
+                "Registration successful"
+        );
     }
 
     @Override
@@ -72,7 +73,17 @@ public class AuthServiceImpl implements AuthService {
             throw new BadRequestException("Invalid credentials");
         }
 
-        String token = jwtUtil.generateToken(request.getUsername());
-        return new AuthResponseDto(token);
+        UserAccount user = userAccountRepository.findByUsername(request.getUsername())
+                .orElseThrow(() -> new BadRequestException("Invalid credentials"));
+
+        String token = jwtUtil.generateToken(user.getUsername());
+
+        return new AuthResponseDto(
+                user.getId(),
+                user.getUsername(),
+                user.getEmail(),
+                token,
+                "Login successful"
+        );
     }
 }
