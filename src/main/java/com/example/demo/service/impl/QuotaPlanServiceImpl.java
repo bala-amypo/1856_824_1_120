@@ -8,6 +8,7 @@ import com.example.demo.service.QuotaPlanService;
 
 import java.util.List;
 
+@Service
 public class QuotaPlanServiceImpl implements QuotaPlanService {
 
     private final QuotaPlanRepository quotaPlanRepository;

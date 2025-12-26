@@ -13,6 +13,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.List;
 
+@Service
 public class ApiUsageLogServiceImpl implements ApiUsageLogService {
 
     private final ApiUsageLogRepository usageRepo;
