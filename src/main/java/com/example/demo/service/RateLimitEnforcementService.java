@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.entity.RateLimitEnforcement;
+
 import java.util.List;
 
 public interface RateLimitEnforcementService {
@@ -9,5 +10,5 @@ public interface RateLimitEnforcementService {
 
     RateLimitEnforcement getEnforcementById(Long id);
 
-    List<RateLimitEnforcement> getEnforcementsForKey(Long apiKeyId);
+    List<RateLimitEnforcement> getEnforcementsForKey(Long keyId);
 }
