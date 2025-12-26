@@ -7,6 +7,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import java.util.Date;
 import java.util.Map;
 
+@Service
 public class JwtUtil {
 
     private final String SECRET = "secretkey123456";
