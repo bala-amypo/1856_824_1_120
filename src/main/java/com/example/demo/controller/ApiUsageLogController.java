@@ -34,7 +34,8 @@ public class ApiUsageLogController {
     }
 
     @GetMapping("/key/{keyId}/count-today")
-    public Long countRequestsToday(@PathVariable Long keyId) {
-        return usageLogService.countRequestsToday(keyId);
-    }
+public int countRequestsToday(@PathVariable Long keyId) {
+    return usageService.countRequestsToday(keyId);
+}
+
 }
