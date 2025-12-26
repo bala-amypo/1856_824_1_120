@@ -2,7 +2,6 @@ package com.example.demo.security;
 
 import com.example.demo.entity.UserAccount;
 import com.example.demo.repository.UserAccountRepository;
-
 import java.util.Collections;
 
 import org.springframework.security.core.userdetails.User;
@@ -21,10 +20,9 @@ public class CustomUserDetailsService implements UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String email)
-            throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String username) {
 
-        UserAccount user = userAccountRepository.findByEmail(email)
+        UserAccount user = userAccountRepository.findByEmail(username)
                 .orElseThrow(() ->
                         new UsernameNotFoundException("User not found"));
 
