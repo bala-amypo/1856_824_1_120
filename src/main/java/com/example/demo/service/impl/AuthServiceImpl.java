@@ -8,6 +8,7 @@ import com.example.demo.exception.BadRequestException;
 import com.example.demo.repository.UserAccountRepository;
 import com.example.demo.security.JwtUtil;
 import com.example.demo.service.AuthService;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -51,10 +52,11 @@ public class AuthServiceImpl implements AuthService {
         String token = jwtUtil.generateToken(claims, saved.getEmail());
 
         return new AuthResponseDto(
-                saved.getId(),
-                saved.getEmail(),
-                saved.getRole(),
-                token
+                saved.getId(),          // userId
+                saved.getEmail(),       // username (email used as username)
+                saved.getEmail(),       // email
+                token,                  // token
+                "Registration successful"
         );
     }
 
@@ -75,10 +77,11 @@ public class AuthServiceImpl implements AuthService {
         String token = jwtUtil.generateToken(claims, user.getEmail());
 
         return new AuthResponseDto(
-                user.getId(),
-                user.getEmail(),
-                user.getRole(),
-                token
+                user.getId(),           // userId
+                user.getEmail(),        // username
+                user.getEmail(),        // email
+                token,                  // token
+                "Login successful"
         );
     }
 }
