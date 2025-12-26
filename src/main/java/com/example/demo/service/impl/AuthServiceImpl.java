@@ -4,16 +4,18 @@ import com.example.demo.dto.AuthRequestDto;
 import com.example.demo.dto.AuthResponseDto;
 import com.example.demo.dto.RegisterRequestDto;
 import com.example.demo.entity.UserAccount;
+import com.example.demo.exception.BadRequestException;
 import com.example.demo.repository.UserAccountRepository;
 import com.example.demo.security.JwtUtil;
 import com.example.demo.service.AuthService;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.util.HashMap;
 
 @Service
 public class AuthServiceImpl implements AuthService {
@@ -23,40 +25,40 @@ public class AuthServiceImpl implements AuthService {
     private final AuthenticationManager authenticationManager;
     private final JwtUtil jwtUtil;
 
-    public AuthServiceImpl(UserAccountRepository userAccountRepository,
-                           PasswordEncoder passwordEncoder,
-                           AuthenticationManager authenticationManager,
-                           JwtUtil jwtUtil) {
+    public AuthServiceImpl(
+            UserAccountRepository userAccountRepository,
+            PasswordEncoder passwordEncoder,
+            AuthenticationManager authenticationManager,
+            JwtUtil jwtUtil
+    ) {
         this.userAccountRepository = userAccountRepository;
         this.passwordEncoder = passwordEncoder;
         this.authenticationManager = authenticationManager;
         this.jwtUtil = jwtUtil;
     }
 
-    // ✅ REGISTER
+    // ✅ FIXED REGISTER
     @Override
-    public AuthResponseDto register(RegisterRequestDto request) {
+    public UserAccount register(RegisterRequestDto request) {
+
+        if (userAccountRepository.existsByEmail(request.getEmail())) {
+            throw new BadRequestException("Email already exists");
+        }
 
         UserAccount user = new UserAccount();
         user.setEmail(request.getEmail());
         user.setPassword(passwordEncoder.encode(request.getPassword()));
-        user.setRole("ROLE_USER");
+        user.setRole(
+                request.getRole() != null ? request.getRole() : "ROLE_USER"
+        );
         user.setActive(true);
 
+        // 🔴 THIS WAS THE BUG → YOU MUST RETURN SAVED OBJECT
         UserAccount saved = userAccountRepository.save(user);
-
-        String token = jwtUtil.generateToken(new HashMap<>(), saved.getEmail());
-
-        return new AuthResponseDto(
-                saved.getId(),
-                saved.getEmail(),
-                token,               // ✅ TOKEN HERE
-                saved.getRole(),
-                "Registration successful"
-        );
+        return saved;
     }
 
-    // ✅ LOGIN  ← THIS WAS THE BUG
+    // ✅ LOGIN
     @Override
     public AuthResponseDto login(AuthRequestDto request) {
 
@@ -68,14 +70,17 @@ public class AuthServiceImpl implements AuthService {
         );
 
         UserAccount user = userAccountRepository.findByEmail(request.getEmail())
-                .orElseThrow(() -> new RuntimeException("Invalid credentials"));
+                .orElseThrow(() -> new BadRequestException("Invalid credentials"));
 
-        String token = jwtUtil.generateToken(new HashMap<>(), user.getEmail());
+        Map<String, Object> claims = new HashMap<>();
+        claims.put("role", user.getRole());
+
+        String token = jwtUtil.generateToken(claims, user.getEmail());
 
         return new AuthResponseDto(
                 user.getId(),
                 user.getEmail(),
-                token,               // ✅ TOKEN, NOT ROLE
+                token,
                 user.getRole(),
                 "Login successful"
         );
