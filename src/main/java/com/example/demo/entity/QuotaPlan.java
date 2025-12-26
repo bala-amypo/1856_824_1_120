@@ -1,6 +1,9 @@
 package com.example.demo.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
 @Entity
 public class QuotaPlan {
@@ -9,7 +12,6 @@ public class QuotaPlan {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true, nullable = false)
     private String planName;
 
     private Integer dailyLimit;
@@ -18,29 +20,57 @@ public class QuotaPlan {
 
     private Boolean active = true;
 
-    public QuotaPlan() {}
+    public QuotaPlan() {
+    }
 
-    public QuotaPlan(Long id, String planName, Integer dailyLimit,
-                     String description, Boolean active) {
-        this.id = id;
+    public QuotaPlan(String planName, Integer dailyLimit, String description, Boolean active) {
         this.planName = planName;
         this.dailyLimit = dailyLimit;
         this.description = description;
         this.active = active;
     }
 
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public Long getId() {
+        return id;
+    }
 
-    public String getPlanName() { return planName; }
-    public void setPlanName(String planName) { this.planName = planName; }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    public Integer getDailyLimit() { return dailyLimit; }
-    public void setDailyLimit(Integer dailyLimit) { this.dailyLimit = dailyLimit; }
+    public String getPlanName() {
+        return planName;
+    }
 
-    public String getDescription() { return description; }
-    public void setDescription(String description) { this.description = description; }
+    public void setPlanName(String planName) {
+        this.planName = planName;
+    }
 
-    public Boolean getActive() { return active; }
-    public void setActive(Boolean active) { this.active = active; }
+    public Integer getDailyLimit() {
+        return dailyLimit;
+    }
+
+    public void setDailyLimit(Integer dailyLimit) {
+        this.dailyLimit = dailyLimit;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Boolean isActive() {
+        return active;
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
 }
