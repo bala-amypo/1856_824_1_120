@@ -10,10 +10,8 @@ import com.example.demo.repository.UserAccountRepository;
 import com.example.demo.security.JwtUtil;
 import com.example.demo.service.AuthService;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Collections;
 
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -22,16 +20,13 @@ public class AuthServiceImpl implements AuthService {
 
     private final UserAccountRepository userAccountRepository;
     private final PasswordEncoder passwordEncoder;
-    private final AuthenticationManager authenticationManager;
     private final JwtUtil jwtUtil;
 
     public AuthServiceImpl(UserAccountRepository userAccountRepository,
                            PasswordEncoder passwordEncoder,
-                           AuthenticationManager authenticationManager,
                            JwtUtil jwtUtil) {
         this.userAccountRepository = userAccountRepository;
         this.passwordEncoder = passwordEncoder;
-        this.authenticationManager = authenticationManager;
         this.jwtUtil = jwtUtil;
     }
 
@@ -49,29 +44,42 @@ public class AuthServiceImpl implements AuthService {
 
         userAccountRepository.save(user);
 
-        Map<String, Object> claims = new HashMap<>();
-        claims.put("role", user.getRole());
+        String token = jwtUtil.generateToken(
+                Collections.emptyMap(),
+                user.getEmail()
+        );
 
-        String token = jwtUtil.generateToken(claims, user.getEmail());
-
-        return new AuthResponseDto(user.getId(), user.getEmail(), token, user.getRole());
+        return new AuthResponseDto(
+                user.getId(),
+                user.getEmail(),
+                token,
+                user.getRole()
+        );
     }
 
     @Override
     public AuthResponseDto login(AuthRequestDto request) {
 
         UserAccount user = userAccountRepository.findByEmail(request.getEmail())
-                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
+                .orElseThrow(() ->
+                        new ResourceNotFoundException("User not found"));
 
-        if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
+        if (!passwordEncoder.matches(
+                request.getPassword(),
+                user.getPassword())) {
             throw new BadRequestException("Invalid credentials");
         }
 
-        Map<String, Object> claims = new HashMap<>();
-        claims.put("role", user.getRole());
+        String token = jwtUtil.generateToken(
+                Collections.emptyMap(),
+                user.getEmail()
+        );
 
-        String token = jwtUtil.generateToken(claims, user.getEmail());
-
-        return new AuthResponseDto(user.getId(), user.getEmail(), token, user.getRole());
+        return new AuthResponseDto(
+                user.getId(),
+                user.getEmail(),
+                token,
+                user.getRole()
+        );
     }
 }
