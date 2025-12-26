@@ -9,13 +9,13 @@ import com.example.demo.repository.UserAccountRepository;
 import com.example.demo.security.JwtUtil;
 import com.example.demo.service.AuthService;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.util.HashMap;
-import java.util.Map;
 
 @Service
 public class AuthServiceImpl implements AuthService {
@@ -29,17 +29,17 @@ public class AuthServiceImpl implements AuthService {
             UserAccountRepository userAccountRepository,
             PasswordEncoder passwordEncoder,
             AuthenticationManager authenticationManager,
-            JwtUtil jwtUtil) {
-
+            JwtUtil jwtUtil
+    ) {
         this.userAccountRepository = userAccountRepository;
         this.passwordEncoder = passwordEncoder;
         this.authenticationManager = authenticationManager;
         this.jwtUtil = jwtUtil;
     }
 
-    // ✅ MUST match AuthService EXACTLY
+    // ✅ FIXED REGISTER
     @Override
-    public AuthResponseDto register(RegisterRequestDto request) {
+    public UserAccount register(RegisterRequestDto request) {
 
         if (userAccountRepository.existsByEmail(request.getEmail())) {
             throw new BadRequestException("Email already exists");
@@ -48,26 +48,17 @@ public class AuthServiceImpl implements AuthService {
         UserAccount user = new UserAccount();
         user.setEmail(request.getEmail());
         user.setPassword(passwordEncoder.encode(request.getPassword()));
-        user.setRole(request.getRole());
+        user.setRole(
+                request.getRole() != null ? request.getRole() : "ROLE_USER"
+        );
         user.setActive(true);
 
+        // 🔴 THIS WAS THE BUG → YOU MUST RETURN SAVED OBJECT
         UserAccount saved = userAccountRepository.save(user);
-
-        Map<String, Object> claims = new HashMap<>();
-        claims.put("role", saved.getRole());
-
-        String token = jwtUtil.generateToken(claims, saved.getEmail());
-
-        return new AuthResponseDto(
-                saved.getId(),
-                saved.getEmail(),
-                saved.getRole(),
-                token,
-                "Registration successful"
-        );
+        return saved;
     }
 
-    // ✅ MUST match AuthService EXACTLY
+    // ✅ LOGIN
     @Override
     public AuthResponseDto login(AuthRequestDto request) {
 
@@ -89,8 +80,8 @@ public class AuthServiceImpl implements AuthService {
         return new AuthResponseDto(
                 user.getId(),
                 user.getEmail(),
-                user.getRole(),
                 token,
+                user.getRole(),
                 "Login successful"
         );
     }
