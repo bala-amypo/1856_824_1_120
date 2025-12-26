@@ -9,6 +9,9 @@ import com.example.demo.repository.UserAccountRepository;
 import com.example.demo.security.JwtUtil;
 import com.example.demo.service.AuthService;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -42,17 +45,18 @@ public class AuthServiceImpl implements AuthService {
         }
 
         UserAccount user = new UserAccount();
-        user.setUsername(request.getUsername());
         user.setEmail(request.getEmail());
         user.setPassword(passwordEncoder.encode(request.getPassword()));
+        // ❌ NO setActive() — not present in entity
 
         UserAccount saved = userAccountRepository.save(user);
 
-        String token = jwtUtil.generateToken(saved.getUsername());
+        Map<String, Object> claims = new HashMap<>();
+        String token = jwtUtil.generateToken(claims, saved.getEmail());
 
         return new AuthResponseDto(
                 saved.getId(),
-                saved.getUsername(),
+                saved.getEmail(),
                 saved.getEmail(),
                 token,
                 "Registration successful"
@@ -65,7 +69,7 @@ public class AuthServiceImpl implements AuthService {
         try {
             authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
-                            request.getUsername(),
+                            request.getUsername(), // email
                             request.getPassword()
                     )
             );
@@ -73,14 +77,15 @@ public class AuthServiceImpl implements AuthService {
             throw new BadRequestException("Invalid credentials");
         }
 
-        UserAccount user = userAccountRepository.findByUsername(request.getUsername())
+        UserAccount user = userAccountRepository.findByEmail(request.getUsername())
                 .orElseThrow(() -> new BadRequestException("Invalid credentials"));
 
-        String token = jwtUtil.generateToken(user.getUsername());
+        Map<String, Object> claims = new HashMap<>();
+        String token = jwtUtil.generateToken(claims, user.getEmail());
 
         return new AuthResponseDto(
                 user.getId(),
-                user.getUsername(),
+                user.getEmail(),
                 user.getEmail(),
                 token,
                 "Login successful"
