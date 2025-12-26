@@ -10,6 +10,7 @@ import com.example.demo.security.JwtUtil;
 import com.example.demo.service.AuthService;
 import java.util.HashMap;
 import java.util.Map;
+
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -30,6 +31,7 @@ public class AuthServiceImpl implements AuthService {
         this.jwtUtil = jwtUtil;
     }
 
+    // ================= REGISTER =================
     @Override
     public AuthResponseDto register(RegisterRequestDto request) {
 
@@ -38,7 +40,6 @@ public class AuthServiceImpl implements AuthService {
         }
 
         UserAccount user = new UserAccount();
-        user.setUsername(request.getUsername());
         user.setEmail(request.getEmail());
         user.setPassword(passwordEncoder.encode(request.getPassword()));
         user.setRole(request.getRole());
@@ -47,38 +48,34 @@ public class AuthServiceImpl implements AuthService {
         UserAccount saved = userAccountRepository.save(user);
 
         Map<String, Object> claims = new HashMap<>();
-        claims.put("role", saved.getRole());
-
-        String token = jwtUtil.generateToken(claims, saved.getUsername());
+        String token = jwtUtil.generateToken(claims, saved.getEmail());
 
         return new AuthResponseDto(
                 saved.getId(),
-                saved.getUsername(),
                 saved.getEmail(),
                 saved.getRole(),
                 token
         );
     }
 
+    // ================= LOGIN =================
     @Override
     public AuthResponseDto login(AuthRequestDto request) {
 
         UserAccount user = userAccountRepository
-                .findByUsername(request.getUsername())
-                .orElseThrow(() -> new BadRequestException("Invalid credentials"));
+                .findByEmail(request.getEmail())
+                .orElseThrow(() ->
+                        new BadRequestException("Invalid credentials"));
 
         if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
             throw new BadRequestException("Invalid credentials");
         }
 
         Map<String, Object> claims = new HashMap<>();
-        claims.put("role", user.getRole());
-
-        String token = jwtUtil.generateToken(claims, user.getUsername());
+        String token = jwtUtil.generateToken(claims, user.getEmail());
 
         return new AuthResponseDto(
                 user.getId(),
-                user.getUsername(),
                 user.getEmail(),
                 user.getRole(),
                 token
