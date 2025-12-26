@@ -13,36 +13,37 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 @Service
 public class ApiUsageLogServiceImpl implements ApiUsageLogService {
 
-    private final ApiUsageLogRepository usageRepo;
-    private final ApiKeyRepository apiKeyRepo;
+    private final ApiUsageLogRepository usageRepository;
+    private final ApiKeyRepository apiKeyRepository;
 
-    public ApiUsageLogServiceImpl(
-            ApiUsageLogRepository usageRepo,
-            ApiKeyRepository apiKeyRepo) {
-        this.usageRepo = usageRepo;
-        this.apiKeyRepo = apiKeyRepo;
+    public ApiUsageLogServiceImpl(ApiUsageLogRepository usageRepository,
+                                  ApiKeyRepository apiKeyRepository) {
+        this.usageRepository = usageRepository;
+        this.apiKeyRepository = apiKeyRepository;
     }
 
     @Override
     public ApiUsageLog logUsage(ApiUsageLog log) {
 
         if (log.getTimestamp().isAfter(Instant.now())) {
-            throw new BadRequestException("Timestamp cannot be in future");
+            throw new BadRequestException("Timestamp cannot be in the future");
         }
 
-        ApiKey key = apiKeyRepo.findById(log.getApiKey().getId())
+        ApiKey key = apiKeyRepository.findById(log.getApiKey().getId())
                 .orElseThrow(() -> new ResourceNotFoundException("ApiKey not found"));
 
         log.setApiKey(key);
-        return usageRepo.save(log);
+        return usageRepository.save(log);
     }
 
     @Override
     public List<ApiUsageLog> getUsageForApiKey(Long keyId) {
-        return usageRepo.findByApiKey_Id(keyId);
+        return usageRepository.findByApiKey_Id(keyId);
     }
 
     @Override
@@ -54,7 +55,7 @@ public class ApiUsageLogServiceImpl implements ApiUsageLogService {
 
         Instant end = Instant.now();
 
-        return usageRepo.findForKeyBetween(keyId, start, end);
+        return usageRepository.findForKeyBetween(keyId, start, end);
     }
 
     @Override
@@ -66,6 +67,6 @@ public class ApiUsageLogServiceImpl implements ApiUsageLogService {
 
         Instant end = Instant.now();
 
-        return usageRepo.countForKeyBetween(keyId, start, end);
+        return usageRepository.countForKeyBetween(keyId, start, end);
     }
 }
