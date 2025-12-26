@@ -9,7 +9,7 @@ import java.util.Map;
 
 import org.springframework.stereotype.Component;
 
-@Component   // ✅ Use Component, NOT Service
+@Component   
 public class JwtUtil {
 
     private final String SECRET = "secretkey123456";

@@ -37,7 +37,7 @@ public class AuthServiceImpl implements AuthService {
         this.jwtUtil = jwtUtil;
     }
 
-    // ✅ FIXED REGISTER
+   
     @Override
     public UserAccount register(RegisterRequestDto request) {
 
@@ -53,12 +53,12 @@ public class AuthServiceImpl implements AuthService {
         );
         user.setActive(true);
 
-        // 🔴 THIS WAS THE BUG → YOU MUST RETURN SAVED OBJECT
+       
         UserAccount saved = userAccountRepository.save(user);
         return saved;
     }
 
-    // ✅ LOGIN
+    
     @Override
     public AuthResponseDto login(AuthRequestDto request) {
 
