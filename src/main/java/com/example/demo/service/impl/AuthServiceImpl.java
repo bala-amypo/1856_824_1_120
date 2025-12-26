@@ -9,70 +9,77 @@ import com.example.demo.repository.UserAccountRepository;
 import com.example.demo.security.JwtUtil;
 import com.example.demo.service.AuthService;
 
-import java.util.HashMap;
-import java.util.Map;
-
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @Service
 public class AuthServiceImpl implements AuthService {
 
     private final UserAccountRepository userAccountRepository;
     private final PasswordEncoder passwordEncoder;
+    private final AuthenticationManager authenticationManager;
     private final JwtUtil jwtUtil;
 
     public AuthServiceImpl(
             UserAccountRepository userAccountRepository,
             PasswordEncoder passwordEncoder,
+            AuthenticationManager authenticationManager,
             JwtUtil jwtUtil) {
 
         this.userAccountRepository = userAccountRepository;
         this.passwordEncoder = passwordEncoder;
+        this.authenticationManager = authenticationManager;
         this.jwtUtil = jwtUtil;
     }
 
-    // ✅ REGISTER
+    // ✅ MUST match AuthService EXACTLY
     @Override
-    public UserAccount register(UserAccount user) {
+    public AuthResponseDto register(RegisterRequestDto request) {
 
-        if (userAccountRepository.existsByEmail(user.getEmail())) {
+        if (userAccountRepository.existsByEmail(request.getEmail())) {
             throw new BadRequestException("Email already exists");
         }
 
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user.setRole("USER");          // test expects role
-        user.setActive(true);          // test expects active=true
+        UserAccount user = new UserAccount();
+        user.setEmail(request.getEmail());
+        user.setPassword(passwordEncoder.encode(request.getPassword()));
+        user.setRole(request.getRole());
+        user.setActive(true);
 
-        return userAccountRepository.save(user);
-    }
-
-    // ✅ LOGIN
-    @Override
-    public String login(String email, String password) {
-
-        UserAccount user = userAccountRepository.findByEmail(email)
-                .orElseThrow(() -> new BadRequestException("Invalid credentials"));
-
-        if (!passwordEncoder.matches(password, user.getPassword())) {
-            throw new BadRequestException("Invalid credentials");
-        }
+        UserAccount saved = userAccountRepository.save(user);
 
         Map<String, Object> claims = new HashMap<>();
-        claims.put("role", user.getRole());
+        claims.put("role", saved.getRole());
 
-        return jwtUtil.generateToken(claims, user.getEmail());
+        String token = jwtUtil.generateToken(claims, saved.getEmail());
+
+        return new AuthResponseDto(
+                saved.getId(),
+                saved.getEmail(),
+                saved.getRole(),
+                token,
+                "Registration successful"
+        );
     }
 
-    // ✅ LOGIN (DTO BASED — REQUIRED BY TESTS)
+    // ✅ MUST match AuthService EXACTLY
+    @Override
     public AuthResponseDto login(AuthRequestDto request) {
+
+        authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(
+                        request.getEmail(),
+                        request.getPassword()
+                )
+        );
 
         UserAccount user = userAccountRepository.findByEmail(request.getEmail())
                 .orElseThrow(() -> new BadRequestException("Invalid credentials"));
-
-        if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
-            throw new BadRequestException("Invalid credentials");
-        }
 
         Map<String, Object> claims = new HashMap<>();
         claims.put("role", user.getRole());
@@ -84,7 +91,7 @@ public class AuthServiceImpl implements AuthService {
                 user.getEmail(),
                 user.getRole(),
                 token,
-                "Bearer"
+                "Login successful"
         );
     }
 }
