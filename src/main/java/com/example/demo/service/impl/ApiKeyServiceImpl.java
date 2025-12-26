@@ -10,16 +10,16 @@ import com.example.demo.service.ApiKeyService;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 @Service
 public class ApiKeyServiceImpl implements ApiKeyService {
 
     private final ApiKeyRepository apiKeyRepository;
     private final QuotaPlanRepository quotaPlanRepository;
 
-    public ApiKeyServiceImpl(
-            ApiKeyRepository apiKeyRepository,
-            QuotaPlanRepository quotaPlanRepository) {
-
+    public ApiKeyServiceImpl(ApiKeyRepository apiKeyRepository,
+                             QuotaPlanRepository quotaPlanRepository) {
         this.apiKeyRepository = apiKeyRepository;
         this.quotaPlanRepository = quotaPlanRepository;
     }
@@ -28,7 +28,6 @@ public class ApiKeyServiceImpl implements ApiKeyService {
     public ApiKey createApiKey(ApiKey apiKey) {
 
         QuotaPlan plan = apiKey.getPlan();
-
         if (plan != null && Boolean.FALSE.equals(plan.getActive())) {
             throw new BadRequestException("Quota plan is inactive");
         }
