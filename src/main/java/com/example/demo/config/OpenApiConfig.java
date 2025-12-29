@@ -51,7 +51,7 @@ import org.springframework.context.annotation.Configuration;
 import java.util.List;
 
 @Configuration
-public class SwaggerConfig {
+public class OpenApi {
 
     @Bean
     public OpenAPI customOpenAPI() {
@@ -67,7 +67,7 @@ public class SwaggerConfig {
         return new OpenAPI()
                 // Server URL (VERY IMPORTANT)
                 .servers(List.of(
-                        new Server().url("https://9289.408procr.amypo.ai")
+                        new Server().url("https://9060.32procr.amypo.ai")
                 ))
 
                 // Security configuration
